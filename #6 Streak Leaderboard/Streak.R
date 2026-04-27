@@ -34,21 +34,22 @@ streaks$lesson_id = NULL
 # We can also ignore user_id since there are no repeated user names
 streaks$user_id = NULL
 streaks$date = as.Date(streaks$date)
+streaks$streak = 1
 
-users = data.frame(user_name = unique(streaks$user_name), streak = 0)
+# sort streaks by user_name and date no duplicates
+streaks = streaks[order(streaks$user_name, streaks$date),]
+streaks = unique(streaks)
 
-for ( i in 1:nrow(users) ) {
-  # i = 383
-  dates = unique( subset(streaks, user_name == users$user_name[i],select=date) )
-  dates$streak = 1
-  if ( nrow(dates) > 1 ) {
-    for ( j in 2:nrow(dates) ) if ( dates$date[j] - dates$date[j-1] == 1 ) dates$streak[j] = dates$streak[j-1] + 1
-  }
-  users$streak[i] = max(dates$streak)
-  cat(i,"User",users$user_name[i],"has a max streak of",users$streak[i],"\n")
+start_time = Sys.time()
+for ( i in 2:nrow(streaks) ) {
+  if ( streaks$user_name[i] == streaks$user_name[i-1] && 
+       streaks$date[i] - streaks$date[i-1] == 1 ) streaks$streak[i] = streaks$streak[i-1] + 1
 }
+end_time = Sys.time()
 
-
+user_max_streaks = streaks %>%
+  dplyr::group_by(user_name) %>%
+  dplyr::summarize(max_streak = max(streak, na.rm = TRUE))
 
 
 

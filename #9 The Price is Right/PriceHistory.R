@@ -21,6 +21,7 @@ packageDescription("xfunctions")
 xfunctions::XShowInfo()
 
 # Problem: https://www.youtube.com/watch?v=qQ51wuIgM7E
+minifunctions::displaymedia()
 
 price_history = read.csv("price_history.csv")
 unique(price_history$effective_date)

@@ -20,6 +20,8 @@ packageDescription("zoo")
 # https://cranlogs.r-pkg.org/badges/last-month/zoo
 xfunctions::XShowInfo()
 
+minifunctions::displaymedia()
+
 source("StockMarketFunctions.R")
 
 # minifunctions::displaymedia("https://www.youtube.com/watch?v=FjVSnnFEVs4")
