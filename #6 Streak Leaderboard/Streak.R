@@ -34,20 +34,25 @@ streaks$lesson_id = NULL
 # We can also ignore user_id since there are no repeated user names
 streaks$user_id = NULL
 streaks$date = as.Date(streaks$date)
-streaks$streak = 1
 
 # sort streaks by user_name and date no duplicates
-streaks = streaks[order(streaks$user_name, streaks$date),]
-streaks = unique(streaks)
+streaks = streaks %>% 
+  dplyr::arrange(user_name, date) %>% 
+  dplyr::distinct() %>%
+  dplyr::group_by(user_name) %>%
+  dplyr::mutate(days_diff = as.numeric(date - lag(date))) %>%
+  ungroup()
+
+streaks$streak = 1
 
 start_time = Sys.time()
 for ( i in 2:nrow(streaks) ) {
-  if ( streaks$user_name[i] == streaks$user_name[i-1] && 
-       streaks$date[i] - streaks$date[i-1] == 1 ) streaks$streak[i] = streaks$streak[i-1] + 1
+  if ( streaks$user_name[i] == streaks$user_name[i-1] &&
+       streaks$days_diff[i] == 1 ) streaks$streak[i] = streaks$streak[i-1] + 1
 }
 end_time = Sys.time()
 
-user_max_streaks = streaks %>%
+streaks = streaks %>%
   dplyr::group_by(user_name) %>%
   dplyr::summarize(max_streak = max(streak, na.rm = TRUE))
 
