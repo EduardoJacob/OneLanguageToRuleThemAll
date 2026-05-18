@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.accuweather.com)",
+      "WebFetch(domain:weather.com)",
+      "WebFetch(domain:www.bing.com)",
+      "WebFetch(domain:wttr.in)"
+    ]
+  }
+}

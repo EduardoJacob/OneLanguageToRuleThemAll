@@ -4,7 +4,7 @@
 # usethis::edit_rstudio_snippets()
 # Ctrl+Shift-P - Show Command Palette
 # Ctrl+Alt-T - execute Section
-if ( interactive() ) setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+rstudiotools::setcwd()
 rm(list=ls()) # Clear Workspace
 try( dev.off(dev.list()["RStudioGD"]),silent=T) # Clear Plots
 gc()
@@ -18,14 +18,14 @@ packageDescription("zoo")
 # vignette(package="zoo")
 # vignette("vignette-name",package="zoo")
 # https://cranlogs.r-pkg.org/badges/last-month/zoo
-xfunctions::XShowInfo()
+rstudiotools::showinfo()
 
-minifunctions::displaymedia()
+rstudiotools::displaymedia()
 
 source("StockMarketFunctions.R")
 
-# minifunctions::displaymedia("https://www.youtube.com/watch?v=FjVSnnFEVs4")
-# minifunctions::displaymedia()
+# rstudiotools::displaymedia("https://www.youtube.com/watch?v=FjVSnnFEVs4")
+# rstudiotools::displaymedia()
 prices = read.csv("SPY_close_price_5Y.csv")
 prices$Date = as.Date(prices$Date)
 prices$gc = 0

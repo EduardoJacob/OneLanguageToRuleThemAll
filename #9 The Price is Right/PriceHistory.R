@@ -4,7 +4,7 @@
 # usethis::edit_rstudio_snippets()
 # Ctrl+Shift-P - Show Command Palette
 # Ctrl+Alt-T - execute Section
-if ( interactive() ) setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+rstudiotools::setcwd()
 rm(list=ls()) # Clear Workspace
 try( dev.off(dev.list()["RStudioGD"]),silent=T) # Clear Plots
 gc()
@@ -18,10 +18,10 @@ packageDescription("xfunctions")
 # vignette(package="xfunctions")
 # vignette("vignette-name",package="xfunctions")
 # https://cranlogs.r-pkg.org/badges/last-month/xfunctions
-xfunctions::XShowInfo()
+rstudiotools::showinfo()
 
 # Problem: https://www.youtube.com/watch?v=qQ51wuIgM7E
-minifunctions::displaymedia()
+rstudiotools::displaymedia()
 
 price_history = read.csv("price_history.csv")
 unique(price_history$effective_date)

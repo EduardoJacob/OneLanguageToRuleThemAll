@@ -4,7 +4,7 @@
 # usethis::edit_rstudio_snippets()
 # Ctrl+Shift-P - Show Command Palette
 # Ctrl+Alt-T - execute Section
-if ( interactive() ) setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+rstudiotools::setcwd()
 rm(list=ls()) # Clear Workspace
 try( dev.off(dev.list()["RStudioGD"]),silent=T) # Clear Plots
 gc()
@@ -18,9 +18,9 @@ packageDescription("jsonlite")
 # vignette(package="jsonlite")
 # vignette("vignette-name",package="jsonlite")
 # https://cranlogs.r-pkg.org/badges/last-month/jsonlite
-xfunctions::XShowInfo()
+rstudiotools::showinfo()
 
-minifunctions::displaymedia()
+rstudiotools::displaymedia()
 sales = read.csv("sales_orders.csv")
 sales$index = 1:nrow(sales)
  

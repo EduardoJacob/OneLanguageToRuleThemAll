@@ -4,7 +4,7 @@
 # usethis::edit_rstudio_snippets()
 # Ctrl+Shift-P - Show Command Palette
 # Ctrl+Alt-T - execute Section
-if ( interactive() ) setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+rstudiotools::setcwd()
 rm(list=ls()) # Clear Workspace
 try( dev.off(dev.list()["RStudioGD"]),silent=T) # Clear Plots
 gc()
@@ -18,9 +18,9 @@ packageDescription("xfunctions")
 # vignette(package="xfunctions")
 # vignette("vignette-name",package="xfunctions")
 # https://cranlogs.r-pkg.org/badges/last-month/xfunctions
-xfunctions::XShowInfo()
+rstudiotools::showinfo()
 
-minifunctions::displaymedia()
+rstudiotools::displaymedia()
 
 users = read.csv("users.csv")
 activity = read.csv("activity.csv")
